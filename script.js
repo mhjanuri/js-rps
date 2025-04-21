@@ -31,16 +31,32 @@ const playRound = (humanChoice, computerChoice) => {
         (humanChoice === 'rock' && computerChoice === 'scissors') || 
         (humanChoice === 'paper' && computerChoice === 'rock') || 
         (humanChoice === 'scissors' && computerChoice === 'paper')) {
-
+        humanScore++;
         return console.log(`You WIN! ${humanChoice} beats ${computerChoice}`);
     } else {
-
+        computerScore++;
         return console.log(`You LOSE! ${computerChoice} beats ${humanChoice}`);
     }
 }
 
 // console.log(playRound());
 
-playRound(getHumanChoice(), getComputerChoice())
+// playRound(getHumanChoice(), getComputerChoice());
 
+const playGame = () => {
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round ${i + 1}`); 
+        playRound(getHumanChoice(), getComputerChoice());
+        console.log(`Score Human = ${humanScore} vs Computer = ${computerScore}`);
+    }
 
+    if (humanScore == computerScore) {
+        return console.log(`THE MATCH IS TIE!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
+    } else if (humanScore > computerScore) {
+        return console.log(`YOU WIN THIS MATCH!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
+    } else {
+        return console.log(`YOU LOSE THIS MATCH!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
+    }
+}
+
+playGame()
