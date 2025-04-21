@@ -3,10 +3,11 @@ console.log('Hello, World!');
 const getComputerChoice = () => {
     const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
+    console.log(choices[randomIndex]);
     return choices[randomIndex];
 }
 
-console.log(getComputerChoice());
+// console.log(getComputerChoice());
 
 const getHumanChoice = () => {
     const choices = ['rock', 'paper', 'scissors'];
@@ -14,20 +15,31 @@ const getHumanChoice = () => {
     while (choices.includes(humanChoice) == false) {
         humanChoice = prompt('Try Again!!! Enter your choice (rock, paper, scissors): ').toLowerCase()
     }
-    return humanChoice
-    
+    console.log(humanChoice); 
+    return humanChoice;
 }
 
-console.log(getHumanChoice());
+// console.log(getHumanChoice());
 
 let humanScore = 0;
 let computerScore = 0;
 
-const playRound = (humanChoice, ComputerChoice) => {
-    if (humanChoice === ComputerChoice) {
-        return 
+const playRound = (humanChoice, computerChoice) => {
+    if (humanChoice === computerChoice) {
+        return console.log(`It's A TIE!`);
+    } else if (
+        (humanChoice === 'rock' && computerChoice === 'scissors') || 
+        (humanChoice === 'paper' && computerChoice === 'rock') || 
+        (humanChoice === 'scissors' && computerChoice === 'paper')) {
+
+        return console.log(`You WIN! ${humanChoice} beats ${computerChoice}`);
     } else {
-        
+
+        return console.log(`You LOSE! ${computerChoice} beats ${humanChoice}`);
     }
 }
+
+// console.log(playRound());
+
+playRound(getHumanChoice(), getComputerChoice())
 
