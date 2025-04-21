@@ -43,3 +43,4 @@ const playRound = (humanChoice, computerChoice) => {
 
 playRound(getHumanChoice(), getComputerChoice())
 
+
