@@ -13,7 +13,7 @@ const getHumanChoice = () => {
     const choices = ['rock', 'paper', 'scissors'];
     let humanChoice = prompt('Enter your choice (rock, paper, scissors): ').toLowerCase();
     while (choices.includes(humanChoice) == false) {
-        humanChoice = prompt('Try Again!!! Enter your choice (rock, paper, scissors): ').toLowerCase()
+        humanChoice = prompt('Try Again!!! Enter your choice (rock, paper, scissors): ').toLowerCase();
     }
     console.log(humanChoice); 
     return humanChoice;
