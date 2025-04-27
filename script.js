@@ -1,62 +1,75 @@
-console.log('Hello, World!');
+console.log('Rock, Paper, Scissors');
 
-const getComputerChoice = () => {
-    const choices = ['rock', 'paper', 'scissors'];
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    console.log(choices[randomIndex]);
-    return choices[randomIndex];
-}
-
-// console.log(getComputerChoice());
-
-const getHumanChoice = () => {
-    const choices = ['rock', 'paper', 'scissors'];
-    let humanChoice = prompt('Enter your choice (rock, paper, scissors): ').toLowerCase();
-    while (choices.includes(humanChoice) == false) {
-        humanChoice = prompt('Try Again!!! Enter your choice (rock, paper, scissors): ').toLowerCase()
-    }
-    console.log(humanChoice); 
-    return humanChoice;
-}
-
-// console.log(getHumanChoice());
+const headlineDIV = document.querySelector('#headline')
+const humanScoreDIV = document.querySelector('.human-score');
+const computerScoreDIV = document.querySelector('.computer-score');
+const choices = document.querySelectorAll('.choice');
+const resultDIV = document.querySelector('#result');
+const computerChoiceDIV = document.querySelector('#computer-choice');
+const playAgainBTN = document.querySelector('#play-again');
 
 let humanScore = 0;
 let computerScore = 0;
 
+const getComputerChoice = () => {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    // console.log(choices[randomIndex]);
+    return choices[randomIndex];
+}
+
 const playRound = (humanChoice, computerChoice) => {
     if (humanChoice === computerChoice) {
-        return console.log(`It's A TIE!`);
+        resultDIV.innerHTML = `It's A TIE!`;
+        computerChoiceDIV.innerHTML = `Computer choose ${computerChoice}`;
+        // return console.log(`It's A TIE!`);
     } else if (
         (humanChoice === 'rock' && computerChoice === 'scissors') || 
         (humanChoice === 'paper' && computerChoice === 'rock') || 
         (humanChoice === 'scissors' && computerChoice === 'paper')) {
+        resultDIV.innerHTML = `You WIN! ${humanChoice} beats ${computerChoice}`;
+        computerChoiceDIV.innerHTML = `Computer choose ${computerChoice}`;
         humanScore++;
-        return console.log(`You WIN! ${humanChoice} beats ${computerChoice}`);
+        humanScoreDIV.innerHTML = `Human: ${humanScore}`;
+        // return console.log(`You WIN! ${humanChoice} beats ${computerChoice}`);
     } else {
+        resultDIV.innerHTML = `You LOSE! ${computerChoice} beats ${humanChoice}`;
+        computerChoiceDIV.innerHTML = `Computer choose ${computerChoice}`;
         computerScore++;
-        return console.log(`You LOSE! ${computerChoice} beats ${humanChoice}`);
+        computerScoreDIV.innerHTML = `Computer: ${computerScore}`;
+        // return console.log(`You LOSE! ${computerChoice} beats ${humanChoice}`);
+    }
+
+    if (humanScore == 5) {
+        headlineDIV.innerHTML = `YOU WIN THIS MATCH!!!`;
+        document.getElementById('headline').style.color = 'green';
+        document.getElementById('btn-play-again').style.display = 'block';
+        disableOptions();
+    } else if (computerScore == 5) {
+        headlineDIV.innerHTML = `YOU LOSE THIS MATCH!!!`;
+        document.getElementById('headline').style.color = 'red';
+        document.getElementById('btn-play-again').style.display = 'block';
+        disableOptions();
     }
 }
 
-// console.log(playRound());
 
-// playRound(getHumanChoice(), getComputerChoice());
-
-const playGame = () => {
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i + 1}`); 
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`Score Human = ${humanScore} vs Computer = ${computerScore}`);
-    }
-
-    if (humanScore == computerScore) {
-        return console.log(`THE MATCH IS TIE!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
-    } else if (humanScore > computerScore) {
-        return console.log(`YOU WIN THIS MATCH!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
-    } else {
-        return console.log(`YOU LOSE THIS MATCH!!! FINAL Score Human = ${humanScore} vs Computer = ${computerScore}`);
-    }
+function selectWeapon() {
+    const playerWeapon = this.id;
+    const computerWeapon = getComputerChoice();
+    playRound(playerWeapon, computerWeapon)
 }
 
-playGame()
+const disableOptions = () => {
+    choices.forEach((choice) => {
+        choice.style.pointerEvents = 'none';
+    });
+}
+
+const resetGame = () => {
+    location.reload();
+}
+
+// Event listeners
+choices.forEach((choice) => choice.addEventListener('click', selectWeapon));
+playAgainBTN.addEventListener('click', resetGame)

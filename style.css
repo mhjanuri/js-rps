@@ -1,0 +1,116 @@
+/* Apply global styles */
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ff0000;
+} */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+  
+/* Style scoreboard */
+.scoreboard {
+display: flex;
+justify-content: center;
+margin-top: 2rem;
+}
+  
+.scoreboard > div {
+font-size: 2rem;
+margin: 0 1rem;
+padding: 0.5rem;
+border: 2px solid #333;
+border-radius: 10px;
+color: #333;
+}
+
+/* Style choices */
+.choices {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.choice {
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 0 2rem;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice i {
+color: #333;
+font-size: 50px;
+}
+
+.choice:hover {
+    transform: scale(1.1);
+}
+
+.choice:active {
+    transform: scale(0.9);
+}
+
+/* Style result */
+.result {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #333;
+} 
+
+#computer-choice {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0rem;
+    color: #333;
+}
+
+/* Style play again button */
+#btn-play-again {
+    display: none;
+}
+
+.play-again {
+    display: block;
+    margin: 2rem auto 1rem auto;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.play-again:hover {
+    background-color: #757575;
+}
+
+.play-again:active {
+    transform: scale(0.9);
+}
