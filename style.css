@@ -1,10 +1,10 @@
 /* Apply global styles */
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: 1px solid #ff0000;
-}
+} */
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -20,7 +20,7 @@ h1 {
     color: #333;
 }
 
-h3 {
+h2 {
     text-align: center;
     color: #333;
 }
@@ -85,11 +85,15 @@ font-size: 50px;
 #computer-choice {
     text-align: center;
     font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: 0rem;
     color: #333;
 }
 
 /* Style play again button */
+#btn-play-again {
+    display: none;
+}
+
 .play-again {
     display: block;
     margin: 2rem auto 1rem auto;
